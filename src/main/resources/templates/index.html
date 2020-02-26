@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>list of employees</h4>
+<tr th:each="d: ${departments}">
+    <td th:text="${d.name}" />
+
+   <!-- <ul th:block th:each="a: d.employees">
+        <td th:text="${a.firstName}" />
+        <td th:text="${a.lastName}" />
+        <td th:text="${a.role}" />
+        <td th:text="${a.salary}" />
+
+
+    </ul>-->
+</tr>
+</body>
+</html>
