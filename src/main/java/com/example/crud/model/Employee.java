@@ -6,12 +6,22 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     private String firstName;
     private String lastName;
     private String role;
-    private double salary;
+    private String salary;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "department_id") /*, referencedColumnName = "department_id")*/
+    @JoinColumn(name = "department_id")
     private Department department;
 
     public Department getDepartment() {
@@ -46,11 +56,11 @@ public class Employee {
         this.firstName = firstName;
     }
 
-    public double getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 

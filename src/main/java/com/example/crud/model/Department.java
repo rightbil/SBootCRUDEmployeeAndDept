@@ -16,9 +16,19 @@ and its related supertables and secondary tables */
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-/* @Column(name="department_id") */
     private long id;
+
     private String name;
+    private String head;
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
+    }
+
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    public List<Employee> employees;
 
