@@ -18,32 +18,6 @@ public class HomeController {
     public EmployeeRepository employeeRepository;
     @GetMapping("/")
     public String index(Model model) {
-       // create a department object
-      /*  Department d = new Department();
-        d.setName("Google");
-        // prepare Arraylist to hold employees
-        List<Employee> list = new ArrayList<>();
-        //Employee #1
-        Employee e1= new Employee();
-        e1.setFirstName("Bililign");
-        e1.setLastName("Gebru");
-        e1.setSalary(1000);
-        e1.setRole("manager");
-        employeeRepository.save(e1);
-
-        list.add(e1);
-
-        // Employee #2
-        Employee e2= new Employee();
-        e2.setFirstName("Mihret ");
-        e2.setLastName("Alemu");
-        e2.setSalary(2000);
-        e2.setRole("Role Player");
-        list.add(e2);
-        employeeRepository.save(e2);
-
-        d.setEmployees(list);
-        departmentRepository.save(d);*/
         model.addAttribute("departments", departmentRepository.findAll());
         return "index";
     }
@@ -60,12 +34,25 @@ public class HomeController {
         return "redirect:/";
     }
 
+
+    @RequestMapping("/deleteDepartment/{id}")
+    public String deleteDepartment(@PathVariable("id") long id){
+        departmentRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+
+    @RequestMapping("/updateDepartment/{id}")
+    public String upateDepartment(@PathVariable("id") long id, Model model){
+        model.addAttribute("department", departmentRepository.findById(id).get());
+        return "departmentForm";
+    }
+
+
     // Employee
     @RequestMapping(value="/addEmployee")
     public String addEmployee( Model model){
-//        model.addAttribute("emps", employeeRepository.findAll());
         Object o= departmentRepository.findAll();
-
         model.addAttribute("depts",departmentRepository.findAll());
         model.addAttribute("employee",new Employee());
         return "employeeForm";
@@ -79,22 +66,20 @@ public class HomeController {
     @RequestMapping("/search")
     public String search(@RequestParam("search") String search, Model model){
         model.addAttribute("searchResult",departmentRepository.findByName(search));
-        return "searchResult";
+        return "search";
+    }
+
+    @RequestMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable("id") long id){
+        employeeRepository.deleteById(id);
+        return "redirect:/";
     }
 
 
-   /* @GetMapping(value="/update/{name}")
-    public List<Employee> update(@PathVariable final String name){
-        Employee employee= new Employee();
-        Department department = new Department();
-        department.setName("Engineering");
-        employee.setFirstName("Bililign");
-        employee.setLastName("Gebru");
-        employee.setRole("Head");
-        employee.setSalary(1000.99);
+    @RequestMapping("/updateEmployee/{id}")
+    public String upateEmployee(@PathVariable("id") long id, Model model){
+       model.addAttribute("update", employeeRepository.findById(id).get());
+       return "index";
+    }
 
-
-        employeeRepository.save(employee);
-        return (List<Employee>) employeeRepository.findAll();
-    }*/
 }

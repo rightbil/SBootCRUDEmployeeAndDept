@@ -29,7 +29,7 @@ public class Department {
         this.head = head;
     }
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department",  fetch = FetchType.LAZY ,  orphanRemoval = true)
    public List<Employee> employees;
 
     public Department() {

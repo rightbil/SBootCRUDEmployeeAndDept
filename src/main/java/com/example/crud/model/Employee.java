@@ -20,7 +20,7 @@ public class Employee {
     private String lastName;
     private String role;
     private String salary;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
 
