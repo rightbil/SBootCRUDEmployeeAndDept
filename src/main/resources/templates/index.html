@@ -3,61 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-           <div> <a href="/">Home </a></a>
-               <a href="/addDepartment">  Add Department</a>
-               <a href="/addEmployee">    Add Employee</a>
+        <div><a href="/">Home </a></a>
+            <a href="/addDepartment"> Add Department</a>
+            <a href="/addEmployee"> Add Employee</a>
+            <a href="/search"> Search Employee</a>
         </div>
-        <form th:action="@{/searchEmployee}" method="post" class="navbar-form navbar-left">
+       <!-- <form th:action="@{/searchDepartment}" method="post" class="navbar-form navbar-left">
             <div class="form-group">
-                <input type="text" name="search"  placeholder="Enter department name" required>
+                <input type="text" name="search" placeholder="Enter department name" required>
                 <input type="submit" class="btn btn-default" value="Search">
             </div>
-        </form>
+        </form>-->
     </div>
 </nav>
 
 <h6>List Employees by Department</h6>
 
-    <table th:each="d: ${departments}">
-        <tr>
-            <th>Department</th>
-            <th>Head</th>
-        </tr>
-        <div >
+<table th:each="d: ${departments}">
+    <tr>
+        <th>Department</th>
+        <th>Head</th>
+    </tr>
+    <div>
         <tr>
             <td th:text="${d.name}"></td>
             <td th:text="${d.head}"></td>
             <a th:href="@{/deleteDepartment/{id} (id= ${d.id})}">Delete</a>
             <a th:href="@{/updateDepartment/{id} (id= ${d.id})}">Update</a>
-            <!--<a th:href="@{/deleteDepartment/{id} (id= ${d.id})}">Delete</a>-->
+
         </tr>
-            <table>
+        <table>
             <tr>
-                <th>Employee Name</th> <th>Position</th> <th>Salary</th>
+                <th>Employee Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Admin Panel</th>
             </tr>
 
-              <tr th:each="a: ${d.employees}">
-                  <td th:inline="text">[[${a.firstName}]] [[${a.lastName}]]</td>
-                  <td th:inline="text">[[${a.role}]] </td>
-                  <td th:inline="text">[[${a.salary}]] </td>
-                  <td th:inline="text"> <a th:href="@{/deleteEmployee/{id} (id= ${a.id})}">Delete</a> </td>
-                  <td th:inline="text"> <a th:href="@{/updateEmployee/{id} (id= ${a.id})}">Update</a> </td>
+            <tr th:each="a: ${d.employees}">
+                <td th:inline="text">[[${a.firstName}]] [[${a.lastName}]]</td>
+                <td th:inline="text">[[${a.role}]]</td>
+                <td th:inline="text">[[${a.salary}]]</td>
+                <td th:inline="text"><a th:href="@{/deleteEmployee/{id} (id= ${a.id})}">Delete</a></td>
+                <td th:inline="text"><a th:href="@{/updateEmployee/{id} (id= ${a.id})}">Update</a></td>
 
-              </tr>
+            </tr>
             <br>
-            </table>
-        </div>
-        <hr/>
-    </table>
+        </table>
+    </div>
+    <hr/>
+</table>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -11,14 +11,16 @@
     <form method="post" th:action="@{/addEmployee}" th:object="${employee}">
         <input type="hidden" th:field="*{id}">
         First Name : <br/>
-        <input type="text" th:field="*{firstName}" placeholder="First Name"><br/>
+        <input type="text" th:field="*{firstName}" placeholder="First Name" required><br/>
         Last Name : <br/>
-        <input type="text" th:field="*{lastName}" placeholder="Last Name"><br/>
+        <input type="text" th:field="*{lastName}" placeholder="Last Name" required><br/>
         Salary : <br/>
-        <input type="text" th:field="*{salary}" placeholder="Salary"><br/>
+        <input type="text" th:field="*{salary}" placeholder="Salary" required><br/>
         Role : <br/>
-        <input type="text" th:field="*{role}" placeholder="Role"><br/>
+        <input type="text" th:field="*{role}" placeholder="Role" required><br/>
         Department:<br/>
+        <!--//TODO: department is the navigation filed in the employee class-->
+        <!--//TODO: depts is a variable containing all departments from the repository-->
         <select th:field="*{department}">
             <div th:each="d: ${depts}">
                 <option th:value="${d.id}" th:text="${d.name}"></option>
